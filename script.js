@@ -1,6 +1,45 @@
 (function () {
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---- Hero flow diagram: sequential beam thread ---- */
+  var flowBranches = document.querySelectorAll('.flow-diagram .flow-branch');
+  if (flowBranches.length === 3 && !reduceMotion) {
+    var leadToIa = flowBranches[0];
+    var iaToCards = flowBranches[1];
+    var cardsToMeeting = flowBranches[2];
+
+    var flowSteps = [
+      [leadToIa.querySelector('.flow-branch-trunk')],
+      [iaToCards.querySelector('.flow-branch-trunk')],
+      [iaToCards.querySelector('.flow-branch-bar')],
+      Array.prototype.slice.call(iaToCards.querySelectorAll('.flow-branch-stub')),
+      Array.prototype.slice.call(cardsToMeeting.querySelectorAll('.flow-branch-stub')),
+      [cardsToMeeting.querySelector('.flow-branch-bar')],
+      [cardsToMeeting.querySelector('.flow-branch-trunk')]
+    ];
+
+    var FLOW_STEP_MS = 900;
+    var FLOW_PAUSE_MS = 2200;
+
+    function pulseFlowStep(els) {
+      els.forEach(function (el) {
+        if (!el) return;
+        el.classList.remove('is-flowing');
+        void el.offsetWidth;
+        el.classList.add('is-flowing');
+      });
+    }
+
+    function runFlowSequence() {
+      flowSteps.forEach(function (els, i) {
+        setTimeout(function () { pulseFlowStep(els); }, i * FLOW_STEP_MS);
+      });
+    }
+
+    runFlowSequence();
+    setInterval(runFlowSequence, flowSteps.length * FLOW_STEP_MS + FLOW_PAUSE_MS);
+  }
+
   /* ---- Reveal on scroll ---- */
   var revealTargets = document.querySelectorAll('[data-reveal-id]');
   var countersRun = false;
