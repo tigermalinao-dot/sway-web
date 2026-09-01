@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contacto — SWAY Digital Business</title>
+<meta name="description" content="Cuéntanos qué te gustaría automatizar en tu negocio. Con base en Sabadell (Vallès Occidental) — te contestamos personalmente en menos de 24h.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lexend:wght@200;300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+<link rel="stylesheet" href="style.css?v=1788275242">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "SWAY Digital Business",
+  "description": "Agencia de automatización con IA y webs para pymes.",
+  "email": "cntact.sway@gmail.com",
+  "telephone": "+34677799669",
+  "areaServed": [
+    { "@type": "City", "name": "Sabadell" },
+    { "@type": "AdministrativeArea", "name": "Vallès Occidental" },
+    { "@type": "AdministrativeArea", "name": "Barcelona" }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Sabadell",
+    "addressRegion": "Barcelona",
+    "addressCountry": "ES"
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- HEADER -->
+<nav class="nav">
+  <a href="index.html" class="logo"><span class="logo-mark">SWAY</span><span class="logo-sub">Digital Business</span></a>
+  <button type="button" class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navRight"><i class="ph-light ph-list"></i></button>
+  <div class="nav-right" id="navRight">
+    <a href="index.html#como-funciona" class="nav-link nav-desktop-link nav-link-hidden">Cómo funciona</a>
+    <a href="servicios.html" class="nav-link nav-desktop-link">Servicios</a>
+    <a href="proyectos.html" class="nav-link nav-desktop-link">Proyectos</a>
+    <a href="precios.html" class="nav-link nav-desktop-link">Precios</a>
+    <a href="auditoria.html" class="nav-link nav-desktop-link">Auditoría gratuita</a>
+    <a href="contacto.html" class="nav-link nav-desktop-link nav-link-active">Contacto</a>
+  </div>
+</nav>
+
+<!-- CONTACT HERO + FORM -->
+<section class="contact-new" data-reveal-id="contact-main">
+  <div class="contact-new-inner">
+    <div class="svc-hero-badge"><i class="ph-light ph-chat-circle-dots"></i>Hablemos</div>
+    <h1 class="svc-hero-title">Hablemos de tu negocio.</h1>
+    <p class="svc-hero-sub">Cuéntanos qué te gustaría automatizar y te contestamos personalmente — sin bots, sin plantillas.</p>
+
+    <form class="contact-form" id="contactForm" novalidate>
+      <div class="contact-chat-group">
+        <label class="contact-chat-label" for="cf-message"><i class="ph-light ph-chat-circle-dots"></i>¿Qué te gustaría automatizar?</label>
+        <div class="contact-chatbox">
+          <textarea id="cf-message" name="message" placeholder="Ej: perdemos reservas fuera de horario porque nadie contesta el WhatsApp por la noche..." required></textarea>
+          <button type="submit" class="contact-chat-send" aria-label="Enviar mensaje"><i class="ph-light ph-arrow-up"></i></button>
+        </div>
+      </div>
+
+      <div class="contact-divider"><span>Tus datos</span></div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="cf-name">Nombre completo *</label>
+          <input class="form-input" type="text" id="cf-name" name="name" placeholder="Tu nombre completo" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cf-email">Email *</label>
+          <input class="form-input" type="email" id="cf-email" name="email" placeholder="tu@email.com" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="cf-phone">Teléfono (opcional)</label>
+          <input class="form-input" type="tel" id="cf-phone" name="phone" placeholder="+34 600 000 000">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cf-company">Empresa (opcional)</label>
+          <input class="form-input" type="text" id="cf-company" name="company" placeholder="Nombre de tu empresa">
+        </div>
+      </div>
+
+      <div class="contact-submit-row">
+        <button type="submit" class="form-submit">Enviar mensaje<i class="ph-light ph-paper-plane-tilt"></i></button>
+        <span class="form-note-inline">Te contestamos en menos de 24h.</span>
+      </div>
+      <p class="form-note" id="cf-status"></p>
+    </form>
+
+    <div class="contact-divider-plain"></div>
+
+    <div class="contact-info-row">
+      <a href="mailto:cntact.sway@gmail.com" class="contact-info-inline"><i class="ph-light ph-envelope-simple"></i>cntact.sway@gmail.com</a>
+      <a href="tel:+34677799669" class="contact-info-inline"><i class="ph-light ph-phone-call"></i>677 799 669</a>
+      <span class="contact-info-inline"><i class="ph-light ph-map-pin"></i>Barcelona, España</span>
+    </div>
+
+    <div class="contact-info-calc">
+      <p>¿Prefieres responder unas preguntas rápidas primero?</p>
+      <a href="precios.html#presupuesto" class="svc-cta">Calcular mi propuesta<i class="ph-light ph-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo logo"><span class="logo-mark">SWAY</span><span class="logo-sub">Digital Business</span></a>
+      <p class="footer-desc">Diseñamos y automatizamos para que tu negocio no pierda ni un cliente por no responder a tiempo.</p>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Navegación</div>
+      <a href="servicios.html">Servicios</a>
+      <a href="proyectos.html">Proyectos</a>
+      <a href="precios.html">Precios</a>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Empezar</div>
+      <a href="auditoria.html">Auditoría gratuita</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="precios.html">Ver precios</a>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Contacto</div>
+      <div class="footer-contact-item"><i class="ph-light ph-envelope-simple"></i><a href="mailto:cntact.sway@gmail.com">cntact.sway@gmail.com</a></div>
+      <div class="footer-contact-item"><i class="ph-light ph-phone-call"></i><a href="tel:+34677799669">677 799 669</a><a href="https://wa.me/34677799669" target="_blank" rel="noopener" class="footer-whatsapp-link" aria-label="Abrir chat de WhatsApp">(WhatsApp)<i class="ph-light ph-whatsapp-logo"></i></a></div>
+      <div class="footer-contact-item"><i class="ph-light ph-map-pin"></i><span>Sabadell, Vallès Occidental</span></div>
+      <a href="contacto.html" class="footer-cta">Solicitar propuesta<i class="ph-light ph-arrow-right"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 SWAY Digital Business · Todos los derechos reservados.</div>
+    <div class="footer-legal">
+      <a href="aviso-legal.html">Aviso legal</a>
+      <a href="privacidad.html">Privacidad</a>
+      <a href="cookies.html">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script src="contacto.js?v=1788275242"></script>
+<script src="script.js?v=1788275242"></script>
+</body>
+</html>
