@@ -1,46 +1,61 @@
 (function () {
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- Hero flow diagram: sequential beam thread ---- */
+  /* ---- Hero flow diagram: pipe-fill sequence, top to bottom, branching at each level ---- */
   var flowBranches = document.querySelectorAll('.flow-diagram .flow-branch');
   if (flowBranches.length === 3 && !reduceMotion) {
     var leadToIa = flowBranches[0];
     var iaToCards = flowBranches[1];
     var cardsToMeeting = flowBranches[2];
+    var flowCards = Array.prototype.slice.call(document.querySelectorAll('.flow-diagram .flow-branch-row .flow-card'));
+
+    var allFlowEls = []
+      .concat(Array.prototype.slice.call(leadToIa.querySelectorAll('.flow-branch-trunk')))
+      .concat(Array.prototype.slice.call(iaToCards.querySelectorAll('.flow-branch-trunk, .flow-branch-bar, .flow-branch-stub, .flow-branch-dot')))
+      .concat(flowCards)
+      .concat(Array.prototype.slice.call(cardsToMeeting.querySelectorAll('.flow-branch-stub, .flow-branch-bar, .flow-branch-dot, .flow-branch-trunk')));
 
     var flowSteps = [
       [leadToIa.querySelector('.flow-branch-trunk')],
       [iaToCards.querySelector('.flow-branch-trunk')],
       [iaToCards.querySelector('.flow-branch-bar')].concat(Array.prototype.slice.call(iaToCards.querySelectorAll('.flow-branch-dot'))),
-      Array.prototype.slice.call(iaToCards.querySelectorAll('.flow-branch-stub')),
+      Array.prototype.slice.call(iaToCards.querySelectorAll('.flow-branch-stub')).concat(flowCards),
       Array.prototype.slice.call(cardsToMeeting.querySelectorAll('.flow-branch-stub')),
       [cardsToMeeting.querySelector('.flow-branch-bar')].concat(Array.prototype.slice.call(cardsToMeeting.querySelectorAll('.flow-branch-dot'))),
       [cardsToMeeting.querySelector('.flow-branch-trunk')]
     ];
 
-    var FLOW_STEP_MS = 650;
-    var FLOW_PAUSE_MS = 2000;
+    var FLOW_STEP_MS = 700;
+    var FLOW_RESET_MS = 500;
+    var FLOW_PAUSE_MS = 1600;
 
-    function pulseFlowStep(els) {
+    function fillStep(els) {
       els.forEach(function (el) {
         if (!el) return;
-        el.classList.remove('is-flowing');
-        void el.offsetWidth;
-        el.classList.add('is-flowing');
-        if (el.classList.contains('flow-branch-dot')) {
-          setTimeout(function () { el.classList.remove('is-flowing'); }, 700);
-        }
+        el.classList.add(el.classList.contains('flow-card') ? 'is-active' : 'is-filled');
       });
+    }
+
+    function resetFlow() {
+      allFlowEls.forEach(function (el) { el.classList.remove('is-filled'); });
+      flowCards.forEach(function (el) { el.classList.remove('is-active'); });
     }
 
     function runFlowSequence() {
       flowSteps.forEach(function (els, i) {
-        setTimeout(function () { pulseFlowStep(els); }, i * FLOW_STEP_MS);
+        setTimeout(function () { fillStep(els); }, i * FLOW_STEP_MS);
       });
     }
 
-    runFlowSequence();
-    setInterval(runFlowSequence, flowSteps.length * FLOW_STEP_MS + FLOW_PAUSE_MS);
+    function loop() {
+      runFlowSequence();
+      setTimeout(function () {
+        resetFlow();
+        setTimeout(loop, FLOW_RESET_MS);
+      }, flowSteps.length * FLOW_STEP_MS + FLOW_PAUSE_MS);
+    }
+
+    loop();
   }
 
   /* ---- Reveal on scroll ---- */

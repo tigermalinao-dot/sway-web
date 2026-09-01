@@ -19,8 +19,6 @@ button{font-family:var(--font)}
 @keyframes chatPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 @keyframes flowIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@keyframes flowBeamV{0%{background-position:0 -200%}100%{background-position:0 200%}}
-@keyframes flowBeamH{0%{background-position:-200% 0}100%{background-position:200% 0}}
 @media (prefers-reduced-motion: reduce){
   *{animation:none !important;transition:none !important}
   .flow-node{opacity:1 !important}
@@ -137,35 +135,42 @@ button{font-family:var(--font)}
 
 /* tree connector: trunk (single side) + horizontal bar + 3 stubs (branch side) */
 .flow-branch{position:relative;height:36px;max-width:640px;margin:0 auto;width:100%}
-.flow-branch-bar{
-  position:absolute;top:18px;left:16.666%;right:16.666%;height:1px;background:transparent;
-  overflow:hidden;border-radius:1px;
+
+/* horizontal bar: fills like a pipe. Fan-out branch grows outward from the center joint;
+   merge branch grows inward from both outer joints toward the center. */
+.flow-branch-bar{position:absolute;top:18px;left:16.666%;right:16.666%;height:1px}
+.flow-branch-bar::before,.flow-branch-bar::after{
+  content:'';position:absolute;top:0;height:100%;background:var(--accent);
+  transform:scaleX(0);transition:transform .8s cubic-bezier(.65,0,.35,1);
 }
-.flow-branch-bar::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,transparent 0%,var(--accent) 40%,var(--accent) 60%,transparent 100%);
-  background-size:260% 100%;background-repeat:no-repeat;background-position:-200% 0;
-}
-.flow-branch-bar.is-flowing::after{animation:flowBeamH 1.7s ease-in-out;}
-.flow-branch-trunk,.flow-branch-stub{
-  position:absolute;width:1px;height:18px;background:transparent;transform:translateX(-50%);
-  overflow:hidden;border-radius:1px;
-}
+.flow-branch-bar::before{left:0;right:50%}
+.flow-branch-bar::after{left:50%;right:0}
+.flow-branch:not(.flow-branch-merge) .flow-branch-bar::before{transform-origin:right center}
+.flow-branch:not(.flow-branch-merge) .flow-branch-bar::after{transform-origin:left center}
+.flow-branch-merge .flow-branch-bar::before{transform-origin:left center}
+.flow-branch-merge .flow-branch-bar::after{transform-origin:right center}
+.flow-branch-bar.is-filled::before,.flow-branch-bar.is-filled::after{transform:scaleX(1)}
+
+/* vertical trunk/stubs: fill top-to-bottom like water dropping through a pipe */
+.flow-branch-trunk,.flow-branch-stub{position:absolute;width:1px;height:18px;transform:translateX(-50%)}
 .flow-branch-trunk::after,.flow-branch-stub::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 0%,var(--accent) 40%,var(--accent) 60%,transparent 100%);
-  background-size:100% 260%;background-repeat:no-repeat;background-position:0 -200%;
+  content:'';position:absolute;left:0;top:0;width:100%;height:100%;background:var(--accent);
+  transform:scaleY(0);transform-origin:top;transition:transform .6s cubic-bezier(.65,0,.35,1);
 }
-.flow-branch-trunk.is-flowing::after,.flow-branch-stub.is-flowing::after{animation:flowBeamV 1.7s ease-in-out;}
+.flow-branch-trunk.is-filled::after,.flow-branch-stub.is-filled::after{transform:scaleY(1)}
+
 .flow-branch-dot{
   position:absolute;top:18px;width:5px;height:5px;border-radius:50%;background:transparent;
-  transform:translate(-50%,-50%);opacity:0;transition:opacity .5s ease;
+  transform:translate(-50%,-50%);opacity:0;transition:opacity .3s ease,background .3s ease;
 }
-.flow-branch-dot.is-flowing{background:var(--accent);opacity:1}
+.flow-branch-dot.is-filled{background:var(--accent);opacity:1}
 .flow-branch:not(.flow-branch-merge) .flow-branch-trunk{top:0;left:50%}
 .flow-branch:not(.flow-branch-merge) .flow-branch-stub{top:18px}
 .flow-branch-merge .flow-branch-trunk{top:18px;left:50%}
 .flow-branch-merge .flow-branch-stub{top:0}
+
+.flow-card{transition:border-color .5s ease}
+.flow-card.is-active{border-color:var(--accent)}
 
 @media (max-width:640px){
   .flow-pill{max-width:100%;padding:12px 14px;gap:10px}
