@@ -138,29 +138,30 @@ button{font-family:var(--font)}
 /* tree connector: trunk (single side) + horizontal bar + 3 stubs (branch side) */
 .flow-branch{position:relative;height:36px;max-width:640px;margin:0 auto;width:100%}
 .flow-branch-bar{
-  position:absolute;top:18px;left:16.666%;right:16.666%;height:1px;background:var(--border);
+  position:absolute;top:18px;left:16.666%;right:16.666%;height:1px;background:transparent;
   overflow:hidden;border-radius:1px;
 }
 .flow-branch-bar::after{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,transparent 0%,var(--accent) 50%,transparent 100%);
-  background-size:300% 100%;background-repeat:no-repeat;background-position:-200% 0;
+  background:linear-gradient(90deg,transparent 0%,var(--accent) 40%,var(--accent) 60%,transparent 100%);
+  background-size:260% 100%;background-repeat:no-repeat;background-position:-200% 0;
 }
-.flow-branch-bar.is-flowing::after{animation:flowBeamH 1.4s ease-in-out;}
+.flow-branch-bar.is-flowing::after{animation:flowBeamH 1.7s ease-in-out;}
 .flow-branch-trunk,.flow-branch-stub{
-  position:absolute;width:1px;height:18px;background:var(--border);transform:translateX(-50%);
+  position:absolute;width:1px;height:18px;background:transparent;transform:translateX(-50%);
   overflow:hidden;border-radius:1px;
 }
 .flow-branch-trunk::after,.flow-branch-stub::after{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 0%,var(--accent) 50%,transparent 100%);
-  background-size:100% 300%;background-repeat:no-repeat;background-position:0 -200%;
+  background:linear-gradient(180deg,transparent 0%,var(--accent) 40%,var(--accent) 60%,transparent 100%);
+  background-size:100% 260%;background-repeat:no-repeat;background-position:0 -200%;
 }
-.flow-branch-trunk.is-flowing::after,.flow-branch-stub.is-flowing::after{animation:flowBeamV 1.4s ease-in-out;}
+.flow-branch-trunk.is-flowing::after,.flow-branch-stub.is-flowing::after{animation:flowBeamV 1.7s ease-in-out;}
 .flow-branch-dot{
-  position:absolute;top:18px;width:5px;height:5px;border-radius:50%;background:var(--border);
-  transform:translate(-50%,-50%);
+  position:absolute;top:18px;width:5px;height:5px;border-radius:50%;background:transparent;
+  transform:translate(-50%,-50%);opacity:0;transition:opacity .5s ease;
 }
+.flow-branch-dot.is-flowing{background:var(--accent);opacity:1}
 .flow-branch:not(.flow-branch-merge) .flow-branch-trunk{top:0;left:50%}
 .flow-branch:not(.flow-branch-merge) .flow-branch-stub{top:18px}
 .flow-branch-merge .flow-branch-trunk{top:18px;left:50%}

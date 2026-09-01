@@ -11,15 +11,15 @@
     var flowSteps = [
       [leadToIa.querySelector('.flow-branch-trunk')],
       [iaToCards.querySelector('.flow-branch-trunk')],
-      [iaToCards.querySelector('.flow-branch-bar')],
+      [iaToCards.querySelector('.flow-branch-bar')].concat(Array.prototype.slice.call(iaToCards.querySelectorAll('.flow-branch-dot'))),
       Array.prototype.slice.call(iaToCards.querySelectorAll('.flow-branch-stub')),
       Array.prototype.slice.call(cardsToMeeting.querySelectorAll('.flow-branch-stub')),
-      [cardsToMeeting.querySelector('.flow-branch-bar')],
+      [cardsToMeeting.querySelector('.flow-branch-bar')].concat(Array.prototype.slice.call(cardsToMeeting.querySelectorAll('.flow-branch-dot'))),
       [cardsToMeeting.querySelector('.flow-branch-trunk')]
     ];
 
-    var FLOW_STEP_MS = 900;
-    var FLOW_PAUSE_MS = 2200;
+    var FLOW_STEP_MS = 650;
+    var FLOW_PAUSE_MS = 2000;
 
     function pulseFlowStep(els) {
       els.forEach(function (el) {
@@ -27,6 +27,9 @@
         el.classList.remove('is-flowing');
         void el.offsetWidth;
         el.classList.add('is-flowing');
+        if (el.classList.contains('flow-branch-dot')) {
+          setTimeout(function () { el.classList.remove('is-flowing'); }, 700);
+        }
       });
     }
 
