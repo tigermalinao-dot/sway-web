@@ -723,7 +723,8 @@ button{font-family:var(--font)}
 
 @media (max-width:640px){
   .cap-grid-4{grid-template-columns:1fr}
-  .pricing-compare-label{font-size:11px;padding:10px 4px 10px 12px}
+  .pricing-compare-row{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,1.15fr)}
+  .pricing-compare-label{font-size:11px;padding:10px 4px 10px 12px;overflow-wrap:break-word;word-break:break-word}
   .pricing-compare-col{font-size:11.5px;padding:10px 8px;gap:6px}
   .pricing-compare-col i{font-size:12px}
   .pricing-compare-head .pricing-compare-col{padding:34px 10px 18px}
@@ -732,7 +733,7 @@ button{font-family:var(--font)}
   .pricing-compare-price{gap:2px}
   .pricing-compare-plus{padding:0}
   .pricing-compare-period{font-size:9px}
-  .pricing-compare-plan{font-size:11px}
+  .pricing-compare-plan{font-size:11px;min-height:28px}
   .pricing-compare-badge{font-size:9.5px;padding:4px 9px;right:8px}
   .pricing-compare-foot .pricing-compare-col{padding:14px 8px}
   .pricing-compare-cta{font-size:12px;padding:10px 10px}
