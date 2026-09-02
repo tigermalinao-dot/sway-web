@@ -299,14 +299,6 @@ button{font-family:var(--font)}
 .web-mock-col{height:44px;background:var(--border);border-radius:8px}
 .web-mock-photo .web-mock-img{display:block;width:100%;height:auto;filter:grayscale(1) opacity(0.5);transition:filter 1s ease}
 .web-pillar.is-revealed .web-mock-photo .web-mock-img{filter:grayscale(0) opacity(1)}
-.web-chat-bubble{
-  position:absolute;bottom:-10px;right:-10px;width:36px;height:36px;border-radius:50%;
-  background:var(--accent);display:flex;align-items:center;justify-content:center;
-  box-shadow:0 8px 24px rgba(232,117,107,0.5);opacity:0;animation:chatPulse 2s ease-in-out infinite;
-  transition:opacity .8s cubic-bezier(.16,1,.3,1);
-}
-.web-pillar.is-revealed .web-chat-bubble{opacity:1}
-.web-chat-bubble i{font-size:17px;color:#0b0b0c}
 
 /* ---------- RESULTS ---------- */
 .results{padding:clamp(64px,8vw,100px) clamp(20px,5vw,64px)}
